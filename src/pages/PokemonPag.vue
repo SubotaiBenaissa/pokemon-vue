@@ -2,7 +2,7 @@
     <div>
         <h1>¿Quién es este pokemón?</h1>
         <PokemonFoto />
-        <PokemonOciones />
+        <PokemonOpciones />
     </div>
 </template>
 
