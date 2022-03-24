@@ -2,12 +2,16 @@
 
     <h1 v-if="!pokemon">Cargando...</h1>
 
-    <div v-if="pokemon">
+    <div v-else>
         <h1>¿Quién es este pokemón?</h1>
-        <PokemonFoto :pokemonId="pokemon.id" :showPokemon="true"/>
-        <PokemonOpciones :pokemons="pokemonArr"/>
+        <PokemonFoto :pokemonId="pokemon.id" :showPokemon="showPokemon"/>
+        <PokemonOpciones :pokemons="pokemonArr" @selection="checkAnswer"/>
+        <h2>{{message}}</h2>
+        <button>
+            Nuevo juego
+        </button>
     </div>
-    
+
 </template>
 
 <script>
@@ -24,7 +28,10 @@ export default {
 
         return{
             pokemonArr: [],
-            pokemon: null
+            pokemon: null,
+            showPokemon: false,
+            showAnswer: false,
+            message: '',
         }
 
     },
@@ -35,6 +42,10 @@ export default {
             this.pokemonArr = await getPokemonOptions()
             const randomInt = Math.floor(Math.random() * 4)
             this.pokemon = this.pokemonArr[randomInt]
+        },
+
+        checkAnswer(pokemonId) {
+            this.showPokemon = true
         }
 
     },
