@@ -2,10 +2,9 @@
 
     <div class="options-container">       
         <ul>
-            <li>opcion</li>
-            <li>opcion</li>
-            <li>opcion</li>
-            <li>opcion</li>
+            <li v-for="pokemon in pokemons" :key="pokemon.id">
+                {{pokemon.name}}
+            </li>
         </ul>
     </div>
 
@@ -14,6 +13,13 @@
 <script>
 
 export default {
+
+    props: {
+        pokemons: {
+            type: Array,
+            required: true,
+        }
+    }
 
 
 }
