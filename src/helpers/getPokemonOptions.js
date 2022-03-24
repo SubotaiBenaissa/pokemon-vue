@@ -5,7 +5,7 @@ const getPokemons = () => {
     return pokemonsArr.map((_, index) => index + 1)
 }
 
-const getPokemonOptions = () => {
+const getPokemonOptions = async () => {
     const mixedPokemons = getPokemons().sort( () => Math.random() - 0.5)
     const pokemons = await getPokemonNames(mixedPokemons.splice(0,4))
     console.table(pokemons)
@@ -13,14 +13,15 @@ const getPokemonOptions = () => {
 
 const getPokemonNames = async ([pok1, pok2, pok3, pok4] = []) => {
     const arrPromises=[
-        pokemonApi.get(`/${a}`),
-        pokemonApi.get(`/${b}`),
-        pokemonApi.get(`/${c}`),
-        pokemonApi.get(`/${d}`),
+        pokemonApi.get(`/${pok1}`),
+        pokemonApi.get(`/${pok2}`), 
+        pokemonApi.get(`/${pok3}`),
+        pokemonApi.get(`/${pok4}`),
     ]
+
     const [p1, p2, p3, p4] = await Promise.all(arrPromises)
     
-    return[
+    return [
         {name: p1.data.name, id: p1.data.id},
         {name: p2.data.name, id: p2.data.id},
         {name: p3.data.name, id: p3.data.id},
