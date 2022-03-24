@@ -1,7 +1,12 @@
 <template>
 
     <div class="options-container">       
-
+        <ul>
+            <li>opcion</li>
+            <li>opcion</li>
+            <li>opcion</li>
+            <li>opcion</li>
+        </ul>
     </div>
 
 </template>
