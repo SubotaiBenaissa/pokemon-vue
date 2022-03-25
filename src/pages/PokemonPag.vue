@@ -6,10 +6,12 @@
         <h1>¿Quién es este pokemón?</h1>
         <PokemonFoto :pokemonId="pokemon.id" :showPokemon="showPokemon"/>
         <PokemonOpciones :pokemons="pokemonArr" @selection="checkAnswer"/>
-        <h2>{{message}}</h2>
-        <button>
-            Nuevo juego
-        </button>
+        <div v-if="!showAnswer" >
+            <h2 class="fade-in">{{message}}</h2>
+            <button @click="newGame">
+                Nuevo juego
+            </button>
+        </div>
     </div>
 
 </template>
@@ -44,8 +46,22 @@ export default {
             this.pokemon = this.pokemonArr[randomInt]
         },
 
-        checkAnswer(pokemonId) {
+        checkAnswer(selectedId) {
             this.showPokemon = true
+            if(selectedId === this.pokemon.id) {
+                this.message = `Correcto, es ${this.pokemon.name} :D`
+            }
+            else {
+                this.message = `No, es ${this.pokemon.name} :C`
+            }
+        },
+
+        newGame() {
+            this.showPokemon = false
+            this.showAnswer = false
+            this.pokemonArr = []
+            this.pokemon = null
+            this.mixPokemonArray()
         }
 
     },
