@@ -6,7 +6,7 @@
         <h1>¿Quién es este pokemón?</h1>
         <PokemonFoto :pokemonId="pokemon.id" :showPokemon="showPokemon"/>
         <PokemonOpciones :pokemons="pokemonArr" @selection="checkAnswer"/>
-        <template v-if="!showAnswer" >
+        <template v-if="showAnswer">
             <h2 class="fade-in">{{message}}</h2>
             <button @click="newGame">
                 Nuevo juego
@@ -48,6 +48,7 @@ export default {
 
         checkAnswer(selectedId) {
             this.showPokemon = true
+            this.showAnswer = true
             if(selectedId === this.pokemon.id) {
                 this.message = `Correcto, es ${this.pokemon.name} :D`
             }
