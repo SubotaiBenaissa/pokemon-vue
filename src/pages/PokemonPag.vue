@@ -6,12 +6,12 @@
         <h1>¿Quién es este pokemón?</h1>
         <PokemonFoto :pokemonId="pokemon.id" :showPokemon="showPokemon"/>
         <PokemonOpciones :pokemons="pokemonArr" @selection="checkAnswer"/>
-        <div v-if="!showAnswer" >
+        <template v-if="!showAnswer" >
             <h2 class="fade-in">{{message}}</h2>
             <button @click="newGame">
                 Nuevo juego
             </button>
-        </div>
+        </template>
     </div>
 
 </template>
